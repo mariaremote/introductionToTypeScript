@@ -97,3 +97,26 @@ function addNewUser(newUser: NewUser): User {
 addNewUser({ username: "jackie", role: "editor" });
 
 console.log(users);
+
+// generic types allow for flexibility in types
+
+const gameScores = [14, 23, 45, 67, 89, 100];
+const favoriteThings = [
+  "raindrops on roses",
+  "whiskers on kittens",
+  "bright copper kettles",
+  "warm woolen mittens",
+];
+const voters = [
+  { name: "Alice", age: 45 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 77 },
+];
+
+function getLastItem<Type>(array: Type[]): Type | undefined {
+  return array[array.length - 1];
+}
+
+console.log(getLastItem(gameScores)); // 100
+console.log(getLastItem(favoriteThings)); // "warm woolen mittens"
+console.log(getLastItem(voters)); // { name: "Charlie", age: 77 }

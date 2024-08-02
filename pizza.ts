@@ -65,10 +65,6 @@ placeOrder("Pepperoni");
 
 completeOrder(1);
 
-console.log("Menu: ", menu);
-console.log("Cash in register: ", cashInRegister);
-console.log("Order queue: ", orderQueue);
-
 function getPizzaDetail(identifier: number | string): Pizza | undefined {
   if (typeof identifier === "number") {
     return menu.find((pizza) => pizza.id === identifier);
@@ -81,3 +77,20 @@ function getPizzaDetail(identifier: number | string): Pizza | undefined {
     throw new Error("Invalid identifier");
   }
 }
+
+function addToArray<T>(array: T[], item: T): T[] {
+  array.push(item);
+  return array;
+}
+
+addToArray<Pizza>(menu, { id: pizzaIdCounter++, name: "Calzone", price: 13 });
+
+addToArray<Order>(orderQueue, {
+  id: orderIdCounter++,
+  pizza: menu[2],
+  status: "ordered",
+});
+
+console.log("Menu: ", menu);
+console.log("Cash in register: ", cashInRegister);
+console.log("Order queue: ", orderQueue);
